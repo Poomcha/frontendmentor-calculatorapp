@@ -1,0 +1,116 @@
+.dark-theme {
+  &__main-bg {
+    background-color: hsl(222, 26%, 31%);
+  }
+  &__toggle-keypad-bg {
+    background-color: hsl(223, 31%, 20%);
+  }
+  &__screen-bg {
+    background-color: hsl(224, 36%, 15%);
+  }
+  &__key-bg {
+    background-color: hsl(225, 21%, 49%);
+    &--equal-toggle {
+      background-color: hsl(6, 63%, 50%);
+    }
+    &--del-reset {
+      background-color: hsl(30, 25%, 89%);
+    }
+  }
+  &__key-shadow {
+    background-color: hsl(224, 28%, 35%);
+    &--equal-toggle {
+      background-color: hsl(6, 70%, 34%);
+    }
+    &--del-reset {
+      background-color: hsl(28, 16%, 65%);
+    }
+  }
+  &__text {
+    &--dark {
+      color: hsl(221, 14%, 31%);
+    }
+    &--white {
+      color: hsl(0, 0, 100%);
+    }
+  }
+}
+
+.light-theme {
+  &__main-bg {
+    background-color: hsl(0, 0%, 90%);
+  }
+  &__toggle-keypad-bg {
+    background-color: hsl(0, 5%, 81%);
+  }
+  &__screen-bg {
+    background-color: hsl(0, 0%, 93%);
+  }
+  &__key-bg {
+    background-color: hsl(185, 42%, 37%);
+    &--equal-toggle {
+      background-color: hsl(25, 98%, 40%);
+    }
+    &--del-reset {
+      background-color: hsl(45, 7%, 89%);
+    }
+  }
+  &__key-shadow {
+    background-color: hsl(185, 58%, 25%);
+    &--equal-toggle {
+      background-color: hsl(25, 99%, 27%);
+    }
+    &--del-reset {
+      background-color: hsl(35, 11%, 61%);
+    }
+  }
+  &__text {
+    &--dark {
+      color: hsl(60, 10%, 19%);
+    }
+    &--white {
+      color: hsl(0, 0, 100%);
+    }
+  }
+}
+
+.purple-theme {
+  &__main-bg {
+    background-color: hsl(268, 75%, 9%);
+  }
+  &__toggle-keypad-bg {
+    background-color: hsl(268, 71%, 12%);
+  }
+  &__screen-bg {
+    background-color: hsl(268, 71%, 12%);
+  }
+  &__key-bg {
+    background-color: hsl(281, 89%, 26%);
+    &--equal-toggle {
+      background-color: hsl(176, 100%, 44%);
+    }
+    &--del-reset {
+      background-color: hsl(268, 47%, 21%);
+    }
+  }
+  &__key-shadow {
+    background-color: hsl(285, 91%, 52%);
+    &--equal-toggle {
+      background-color: hsl(177, 92%, 70%);
+    }
+    &--del-reset {
+      background-color: hsl(290, 70%, 36%);
+    }
+  }
+  &__text {
+    &--dark {
+      color: hsl(198, 20%, 13%);
+    }
+    &--white {
+      color: hsl(0, 0, 100%);
+    }
+    &--light-yellow {
+      color: hsl(52, 100%, 62%);
+    }
+  }
+}
