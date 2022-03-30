@@ -1,15 +1,47 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <Button
+    v-for="item in buttons"
+    :key="`item-${item}`"
+    :value="item"
+    @customclick="printvalue"
+  ></Button>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import HelloWorld from "./components/HelloWorld.vue";
-
+import Button from "./components/Button.vue";
 @Options({
   components: {
-    HelloWorld,
+    Button,
+  },
+  data() {
+    return {
+      buttons: [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        ".",
+        "/",
+        "DEL",
+        "+",
+        "-",
+        "x",
+        "RESET",
+        "=",
+      ],
+    };
+  },
+  methods: {
+    printvalue(e: object) {
+      console.log(e);
+    },
   },
 })
 export default class App extends Vue {}
