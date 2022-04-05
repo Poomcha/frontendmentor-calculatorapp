@@ -1,10 +1,17 @@
 <template>
-  <div class="main-ctn">
+  <div class="main-ctn" :class="`${theme}__main-bg ${theme}__text--white`">
     <div class="main-ctn__calc-ctn">
-      <h1>calc</h1>
+      <div>
+        <h1>calc</h1>
+        <ToggleTheme @changeTheme="chooseTheme" :theme="theme"></ToggleTheme>
+      </div>
       <form @input="compute">
-        <Output :forValues="Object.keys(buttons)" class="ouput"></Output>
-        <div class="wrapper-btn">
+        <Output
+          :forValues="Object.keys(buttons)"
+          class="ouput"
+          :class="`${theme}__screen-bg`"
+        ></Output>
+        <div class="wrapper-btn" :class="`${theme}__toggle-keypad-bg`">
           <Button
             v-for="item in buttons"
             :key="`item-${item[1]}`"
@@ -24,10 +31,12 @@
 import { Options, Vue } from "vue-class-component";
 import Button from "./components/Button.vue";
 import Output from "./components/Output.vue";
+import ToggleTheme from "./components/ToggleTheme.vue";
 @Options({
   components: {
     Button,
     Output,
+    ToggleTheme,
   },
   data() {
     return {
@@ -51,11 +60,52 @@ import Output from "./components/Output.vue";
         delete: ["DEL", "delete"],
         reset: ["RESET", "reset"],
       },
+      themes: {
+        theme1: true,
+        theme2: false,
+        theme3: false,
+      },
     };
+  },
+  computed: {
+    theme() {
+      return this.themes.theme1
+        ? "dark-theme"
+        : this.themes.theme2
+        ? "light-theme"
+        : "purple-theme";
+    },
   },
   methods: {
     printvalue(e: string | number) {
       console.log(e);
+    },
+    printTest(e: any) {
+      console.log(e.target.id);
+    },
+    chooseTheme(e: any) {
+      switch (e.target.id) {
+        case "t-1":
+          this.themes.theme1 = true;
+          this.themes.theme2 = false;
+          this.themes.theme3 = false;
+          break;
+        case "t-2":
+          this.themes.theme2 = true;
+          this.themes.theme1 = false;
+          this.themes.theme3 = false;
+          break;
+        case "t-3":
+          this.themes.theme3 = true;
+          this.themes.theme1 = false;
+          this.themes.theme2 = false;
+          break;
+        default:
+          this.themes.theme1 = true;
+          this.themes.theme2 = false;
+          this.themes.theme3 = false;
+          break;
+      }
     },
   },
 })
@@ -63,7 +113,6 @@ export default class App extends Vue {}
 </script>
 
 <style lang="scss">
-@import url("./style/_themes.scss");
 @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@700&display=swap");
 
 *,
@@ -80,8 +129,12 @@ export default class App extends Vue {}
   height: 100vh;
   display: flex;
   &__calc-ctn {
-    width: 60%;
+    width: 50%;
     margin: auto;
+    > div {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 }
 
@@ -146,7 +199,7 @@ export default class App extends Vue {}
     &--reset,
     &--delete,
     &--equal {
-      font-size: 24px;
+      font-size: 20px;
     }
   }
 }

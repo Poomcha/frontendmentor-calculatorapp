@@ -9,7 +9,7 @@ import { Options, Vue } from "vue-class-component";
     value: String || Number,
   },
   methods: {
-    customclick(e: object) {
+    customclick(e: any) {
       this.$emit("customclick", e.target.value);
     },
   },
