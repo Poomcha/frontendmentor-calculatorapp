@@ -8,7 +8,9 @@
       <form @input="compute">
         <Output
           :forValues="Object.keys(buttons)"
-          class="ouput"
+          :output="output"
+          :temp="temp"
+          class="output"
           :class="`${theme}__screen-bg`"
         ></Output>
         <div class="wrapper-btn" :class="`${theme}__toggle-keypad-bg`">
@@ -16,7 +18,7 @@
             v-for="item in buttons"
             :key="`item-${item[1]}`"
             :value="item[0]"
-            @customclick="printvalue"
+            @customclick="outputing"
             :id="item[1]"
             class="button"
             :class="`button--${item[1]}`"
@@ -41,16 +43,16 @@ import ToggleTheme from "./components/ToggleTheme.vue";
   data() {
     return {
       buttons: {
-        0: [0, "zero"],
-        1: [1, "one"],
-        2: [2, "two"],
-        3: [3, "three"],
-        4: [4, "four"],
-        5: [5, "five"],
-        6: [6, "six"],
-        7: [7, "seven"],
-        8: [8, "eight"],
-        9: [9, "nine"],
+        0: ["0", "zero"],
+        1: ["1", "one"],
+        2: ["2", "two"],
+        3: ["3", "three"],
+        4: ["4", "four"],
+        5: ["5", "five"],
+        6: ["6", "six"],
+        7: ["7", "seven"],
+        8: ["8", "eight"],
+        9: ["9", "nine"],
         point: [".", "point"],
         plus: ["+", "plus"],
         minus: ["-", "minus"],
@@ -65,6 +67,10 @@ import ToggleTheme from "./components/ToggleTheme.vue";
         theme2: false,
         theme3: false,
       },
+      output: "0",
+      temp: "0",
+      result: "0",
+      operation: "",
     };
   },
   computed: {
@@ -77,11 +83,123 @@ import ToggleTheme from "./components/ToggleTheme.vue";
     },
   },
   methods: {
-    printvalue(e: string | number) {
-      console.log(e);
-    },
-    printTest(e: any) {
-      console.log(e.target.id);
+    outputing(e: string) {
+      const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
+      const operations = ["+", "-", "x", "/", "=", "DEL", "RESET"];
+      if (numbers.includes(e)) {
+        switch (e) {
+          case ".":
+            if (
+              !this.output.includes(".") &&
+              !operations.includes(this.output)
+            ) {
+              this.output += ".";
+            }
+            break;
+          default:
+            this.output === "0" || operations.includes(this.output)
+              ? (this.output = e)
+              : (this.output += e);
+            break;
+        }
+      } else if (operations.includes(e)) {
+        if (!operations.includes(this.output)) {
+          switch (e) {
+            case "DEL":
+              this.output.length === 1
+                ? (this.output = "0")
+                : (this.output = this.output.slice(0, this.output.length - 1));
+              break;
+            case "RESET":
+              this.output = "0";
+              this.temp = "0";
+              this.result = "0";
+              this.operation = "";
+              break;
+            case "=":
+              switch (this.operation) {
+                case "+":
+                  this.temp = `${
+                    parseFloat(this.temp) + parseFloat(this.output)
+                  }`;
+                  this.operation = "";
+                  this.output = this.temp;
+                  break;
+                case "-":
+                  this.temp = `${
+                    parseFloat(this.temp) - parseFloat(this.output)
+                  }`;
+                  this.operation = "";
+                  this.output = this.temp;
+                  break;
+                case "x":
+                  this.temp = `${
+                    parseFloat(this.temp) * parseFloat(this.output)
+                  }`;
+                  this.operation = "";
+                  this.output = this.temp;
+                  break;
+                case "/":
+                  this.temp = `${
+                    parseFloat(this.temp) / parseFloat(this.output)
+                  }`;
+                  this.operation = "";
+                  this.output = this.temp;
+                  break;
+                default:
+                  this.output = this.temp;
+                  break;
+              }
+              break;
+            default:
+              switch (this.operation) {
+                case "+":
+                  this.temp = `${
+                    parseFloat(this.temp) + parseFloat(this.output)
+                  }`;
+                  this.operation = e;
+                  this.output = e;
+                  break;
+                case "-":
+                  this.temp = `${
+                    parseFloat(this.temp) - parseFloat(this.output)
+                  }`;
+                  this.operation = e;
+                  this.output = e;
+                  break;
+                case "*":
+                  this.temp = `${
+                    parseFloat(this.temp) * parseFloat(this.output)
+                  }`;
+                  this.operation = e;
+                  this.output = e;
+                  break;
+                case "/":
+                  this.temp = `${
+                    parseFloat(this.temp) / parseFloat(this.output)
+                  }`;
+                  this.operation = e;
+                  this.output = e;
+                  break;
+                default:
+                  if (
+                    operations
+                      .filter(
+                        (value) =>
+                          value !== "DEL" && value !== "RESET" && value !== "="
+                      )
+                      .includes(e)
+                  ) {
+                    this.temp = this.output;
+                    this.operation = e;
+                    this.output = e;
+                  }
+              }
+              break;
+          }
+          console.log(this.temp);
+        }
+      }
     },
     chooseTheme(e: any) {
       switch (e.target.id) {
@@ -156,6 +274,7 @@ export default class App extends Vue {}
     padding: 1rem;
     border-radius: 1rem;
     border: none;
+    cursor: pointer;
     &--seven,
     &--eight,
     &--nine,
