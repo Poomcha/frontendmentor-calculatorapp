@@ -2,8 +2,12 @@
   <div class="main-ctn" :class="`${theme}__main-bg ${theme}__text--white`">
     <div class="main-ctn__calc-ctn">
       <div>
-        <h1>calc</h1>
-        <ToggleTheme @changeTheme="chooseTheme" :theme="theme"></ToggleTheme>
+        <h1 class="title" :class="`${theme}__text--title`">calc</h1>
+        <ToggleTheme
+          @changeTheme="chooseTheme"
+          :theme="theme"
+          class="toggle"
+        ></ToggleTheme>
       </div>
       <form @input="compute">
         <Output
@@ -11,6 +15,7 @@
           :output="output"
           :temp="temp"
           class="output"
+          :theme="theme"
           :class="`${theme}__screen-bg`"
         ></Output>
         <div class="wrapper-btn" :class="`${theme}__toggle-keypad-bg`">
@@ -18,10 +23,27 @@
             v-for="item in buttons"
             :key="`item-${item[1]}`"
             :value="item[0]"
+            :theme="theme"
             @customclick="outputing"
             :id="item[1]"
             class="button"
-            :class="`button--${item[1]}`"
+            :class="`button--${item[1]}  ${
+              item[0] === '='
+                ? theme + '__key-shadow--equal'
+                : item[0] === 'DEL'
+                ? theme + '__key-shadow--del-reset'
+                : item[0] === 'RESET'
+                ? theme + '__key-shadow--del-reset'
+                : theme + '__key-shadow'
+            } ${
+              item[0] === '='
+                ? theme + '__key-bg--equal-toggle'
+                : item[0] === 'DEL'
+                ? theme + '__key-bg--del-reset'
+                : item[0] === 'RESET'
+                ? theme + '__key-bg--del-reset'
+                : theme + '__key-bg'
+            } `"
           ></Button>
         </div>
       </form>
@@ -243,36 +265,49 @@ export default class App extends Vue {}
 }
 
 .main-ctn {
-  width: 100vw;
-  height: 100vh;
   display: flex;
+  width: 100vw;
+  min-height: 100vh;
   &__calc-ctn {
-    width: 50%;
-    margin: auto;
+    width: 90%;
+    margin: 2rem auto 2rem auto;
+    @include breakpoint(smallDesktop) {
+      width: 33%;
+    }
     > div {
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      > .toggle {
+        position: relative;
+        bottom: 0rem;
+      }
     }
   }
 }
 
 .wrapper-btn {
+  height: 60vh;
+  border-radius: 0.5rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
   grid-template-areas:
     "x x x x"
     "x x x x"
     "x x x x"
     "x x x x"
     "r r e e";
-  grid-gap: 1rem;
+  grid-gap: 0.75rem;
   padding: 1rem;
+  place-items: center;
   .button {
-    font-size: 32px;
+    font-size: 2rem;
     font-weight: 700;
-    width: 100%;
-    padding: 1rem;
-    border-radius: 1rem;
+    min-width: 100%;
+    min-height: 100%;
+    border-radius: 0.5rem;
     border: none;
     cursor: pointer;
     &--seven,
@@ -318,7 +353,7 @@ export default class App extends Vue {}
     &--reset,
     &--delete,
     &--equal {
-      font-size: 20px;
+      font-size: 0.8rem;
     }
   }
 }

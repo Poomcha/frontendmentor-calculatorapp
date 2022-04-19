@@ -11,7 +11,7 @@
       <div class="slider-ctn" :class="`${theme}__toggle-keypad-bg`">
         <span
           class="slider-ctn__slider"
-          :class="`${theme}__key-bg--equal-toggle ${theme}__key-shadow--equal-toggle`"
+          :class="`${theme}__key-bg--equal-toggle ${theme}__key-shadow--toggle`"
           id="slider"
         ></span>
       </div>
@@ -39,8 +39,8 @@ export default class ToggleTheme extends Vue {}
   display: flex;
   align-items: flex-end;
   &__title {
-    font-size: 14px;
-    margin: 0 1.6rem 0.3rem 0;
+    font-size: 0.75rem;
+    margin: 0 1.4rem 0.3rem 0;
   }
   &__switch-ctn {
     display: flex;
@@ -51,8 +51,8 @@ export default class ToggleTheme extends Vue {}
     }
     label {
       cursor: pointer;
-      font-size: 14px;
-      padding: 0 0.8rem 0.4rem 0.8rem;
+      font-size: 0.75rem;
+      padding: 0 0.4rem 0.4rem 0.4rem;
       transition: transform 0.5s ease-out;
       &:hover {
         transform: rotate(6deg) scale(2, 2);
@@ -60,32 +60,32 @@ export default class ToggleTheme extends Vue {}
     }
     #theme-1:checked {
       ~ .slider-ctn > #slider {
-        left: 0.5rem;
+        left: 0.25rem;
       }
     }
     #theme-2:checked {
       ~ .slider-ctn > #slider {
-        left: calc(33.3% + 0.5rem);
+        left: calc(33.3% + 0.25rem);
       }
     }
     #theme-3:checked {
       ~ .slider-ctn > #slider {
-        left: calc(100% - 1.75rem);
+        left: calc(100% - 1.25rem);
       }
     }
     .slider-ctn {
       width: 100%;
-      height: 2rem;
+      height: 1.5rem;
       margin: auto;
       border-radius: 2rem;
       &__slider {
         display: inline-block;
-        height: 1.25rem;
-        width: 1.25rem;
+        height: 1rem;
+        width: 1rem;
         border-radius: 100%;
         position: relative;
-        top: calc(0.75rem / 2);
-        left: 0.5rem;
+        top: calc(0.5rem / 2);
+        left: 0.25rem;
         transition: 0.5s left 0.05s ease-in-out;
       }
     }

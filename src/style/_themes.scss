@@ -9,28 +9,31 @@
     background-color: hsl(224, 36%, 15%);
   }
   &__key-bg {
-    background-color: hsl(225, 21%, 49%);
+    background-color: hsl(30, 25%, 89%);
     &--equal-toggle {
       background-color: hsl(6, 63%, 50%);
     }
     &--del-reset {
-      background-color: hsl(30, 25%, 89%);
+      background-color: hsl(225, 21%, 49%);
     }
   }
   &__key-shadow {
-    background-color: hsl(224, 28%, 35%);
-    &--equal-toggle {
-      box-shadow: hsl(6, 70%, 34%) 0 0 4px;
+    box-shadow:  hsl(28, 16%, 65%) 0 -0.3rem inset;
+    &--equal {
+      box-shadow: hsl(6, 70%, 34%) 0 -0.3rem inset;
     }
     &--del-reset {
-      background-color: hsl(28, 16%, 65%);
+      box-shadow: hsl(224, 28%, 35%) 0 -0.3rem inset;
+    }
+    &--toggle {
+      box-shadow: hsl(6, 70%, 34%) 0 0 4px;
     }
   }
   &__text {
-    &--dark {
+    &--dark, &--keys {
       color: hsl(221, 14%, 31%);
     }
-    &--white {
+    &--white, &--output, &--title, &--spec-keys {
       color: hsl(0, 0, 100%);
     }
     &--toggle {
@@ -53,35 +56,35 @@
     background-color: hsl(0, 0%, 93%);
   }
   &__key-bg {
-    background-color: hsl(185, 42%, 37%);
+    background-color: hsl(45, 7%, 89%);
     &--equal-toggle {
       background-color: hsl(25, 98%, 40%);
     }
     &--del-reset {
-      background-color: hsl(45, 7%, 89%);
+      background-color: hsl(185, 42%, 37%);
     }
   }
   &__key-shadow {
-    background-color: hsl(185, 58%, 25%);
-    &--equal-toggle {
+    box-shadow: hsl(35, 11%, 61%) 0 -0.3rem inset;
+    &--toggle {
       box-shadow: hsl(25, 99%, 27%) 0 0 4px;
     }
     &--del-reset {
-      background-color: hsl(35, 11%, 61%);
+      box-shadow: hsl(185, 58%, 25%) 0 -0.3rem inset;
+    }
+    &--equal {
+      box-shadow: hsl(25, 99%, 27%) 0 -0.3rem inset;
     }
   }
   &__text {
-    &--dark {
+    &--dark, &--theme-chooser, &--output, &--title, &--keys {
       color: hsl(60, 10%, 19%);
     }
-    &--white {
+    &--white, &--spec-keys {
       color: hsl(0, 0, 100%);
     }
     &--toggle {
       color: hsl(25, 98%, 40%);
-    }
-    &--theme-chooser {
-      color: hsl(60, 10%, 19%);
     }
   }
 }
@@ -97,38 +100,38 @@
     background-color: hsl(268, 71%, 12%);
   }
   &__key-bg {
-    background-color: hsl(281, 89%, 26%);
+    background-color: hsl(268, 47%, 21%);
     &--equal-toggle {
       background-color: hsl(176, 100%, 44%);
     }
     &--del-reset {
-      background-color: hsl(268, 47%, 21%);
+      background-color: hsl(281, 89%, 26%);
     }
   }
   &__key-shadow {
-    background-color: hsl(285, 91%, 52%);
-    &--equal-toggle {
+    box-shadow: hsl(285, 91%, 52%) 0 -0.3rem inset;
+    &--toggle {
       box-shadow: hsl(177, 92%, 70%) 0 0 4px;
     }
     &--del-reset {
-      background-color: hsl(290, 70%, 36%);
+      box-shadow: hsl(290, 70%, 36%) 0 -0.3rem inset;
+    }
+    &--equal{
+      box-shadow: hsl(177, 92%, 70%) 0 -0.3rem inset;
     }
   }
   &__text {
-    &--dark {
+    &--dark, &--spec-equal {
       color: hsl(198, 20%, 13%);
     }
-    &--white {
+    &--white, &--spec-keys {
       color: hsl(0, 0, 100%);
     }
-    &--light-yellow {
+    &--light-yellow, &--theme-chooser, &--output, &--title, &--keys {
       color: hsl(52, 100%, 62%);
     }
     &--toggle {
       color: hsl(176, 100%, 44%);
-    }
-    &--theme-chooser {
-      color: hsl(52, 100%, 62%);
     }
   }
 }

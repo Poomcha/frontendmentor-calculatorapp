@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <span v-if="tempIsVisible">{{ temp }}</span>
-    <output :for="forValues" name="result">{{ output }}</output>
+  <div class="output-ctn">
+    <!-- <span v-if="tempIsVisible">{{ temp }}</span> -->
+    <output :for="forValues" name="result" :class="`${theme}__text--output`">{{
+      output
+    }}</output>
   </div>
 </template>
 
@@ -21,6 +23,10 @@ import { Options, Vue } from "vue-class-component";
       type: String,
       required: true,
     },
+    theme: {
+      type: String,
+      required: true,
+    },
   },
   computed: {
     tempIsVisible() {
@@ -31,3 +37,21 @@ import { Options, Vue } from "vue-class-component";
 })
 export default class Output extends Vue {}
 </script>
+
+<style lang="scss">
+.output-ctn {
+  display: flex;
+  justify-content: flex-start;
+  direction: rtl;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  output {
+    display: block;
+    padding: 1rem;
+    font-size: 2.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+</style>
