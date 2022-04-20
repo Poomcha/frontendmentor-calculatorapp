@@ -1,3 +1,5 @@
+@use "sass:string";
+
 @mixin breakpoint($size) {
     @if $size == tablet {
         @media screen and (min-width: 768px) {
@@ -19,4 +21,10 @@
             @content;
         }
     }
+}
+
+@mixin activeKey($boxShadow) {
+    position: relative;
+    top: 0.2rem;
+    box-shadow: string.unquote($boxShadow);
 }

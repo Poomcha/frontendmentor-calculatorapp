@@ -1,5 +1,9 @@
 <template>
-  <div class="main-ctn" :class="`${theme}__main-bg ${theme}__text--white`">
+  <div
+    class="main-ctn"
+    :class="`${theme}__main-bg ${theme}__text--white`"
+    @keydown="handlekeys"
+  >
     <div class="main-ctn__calc-ctn">
       <div>
         <h1 class="title" :class="`${theme}__text--title`">calc</h1>
@@ -105,6 +109,19 @@ import ToggleTheme from "./components/ToggleTheme.vue";
     },
   },
   methods: {
+    handlekeys(e: any) {
+      const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
+      const operations = ["+", "-", "x", "/", "="];
+      const del = "DEL";
+      const reset = "RESET";
+      if (numbers.includes(e.key) || operations.includes(e.key)) {
+        this.outputing(e.key);
+      } else if (e.key === "Enter") {
+        this.outputing("=");
+      } else if (e.key === "Backspace" || e.key === "Delete") {
+        this.outputing(del);
+      }
+    },
     outputing(e: string) {
       const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
       const operations = ["+", "-", "x", "/", "=", "DEL", "RESET"];
@@ -116,6 +133,7 @@ import ToggleTheme from "./components/ToggleTheme.vue";
               !operations.includes(this.output)
             ) {
               this.output += ".";
+              console.log(this.output);
             }
             break;
           default:

@@ -70,15 +70,4 @@ export default class Button extends Vue {
 }
 </script>
 
-<style scoped lang="scss">
-// .classicBtn {
-//   display: block;
-//   width: 4rem;
-//   height: 4rem;
-// }
-// .bigBtn {
-//   display: block;
-//   width: 8.75rem;
-//   height: 4rem;
-// }
-</style>
+<style scoped lang="scss"></style>
