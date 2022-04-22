@@ -41,8 +41,7 @@ export default class Output extends Vue {}
 <style lang="scss">
 .output-ctn {
   display: flex;
-  justify-content: flex-start;
-  direction: rtl;
+  justify-content: flex-end;
   border-radius: 0.5rem;
   margin-bottom: 1.5rem;
   output {

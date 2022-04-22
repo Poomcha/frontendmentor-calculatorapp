@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="main-ctn"
-    :class="`${theme}__main-bg ${theme}__text--white`"
-    @keydown="handlekeys"
-  >
+  <div class="main-ctn" :class="`${theme}__main-bg ${theme}__text--white`">
     <div class="main-ctn__calc-ctn">
       <div>
         <h1 class="title" :class="`${theme}__text--title`">calc</h1>
@@ -13,7 +9,7 @@
           class="toggle"
         ></ToggleTheme>
       </div>
-      <form @input="compute">
+      <form @input="compute" @keydown="handlekeys">
         <Output
           :forValues="Object.keys(buttons)"
           :output="output"
@@ -24,6 +20,7 @@
         ></Output>
         <div class="wrapper-btn" :class="`${theme}__toggle-keypad-bg`">
           <Button
+            autofocus
             v-for="item in buttons"
             :key="`item-${item[1]}`"
             :value="item[0]"
@@ -120,6 +117,8 @@ import ToggleTheme from "./components/ToggleTheme.vue";
         this.outputing("=");
       } else if (e.key === "Backspace" || e.key === "Delete") {
         this.outputing(del);
+      } else if (e.key === "*") {
+        this.outputing("x");
       }
     },
     outputing(e: string) {
@@ -133,7 +132,6 @@ import ToggleTheme from "./components/ToggleTheme.vue";
               !operations.includes(this.output)
             ) {
               this.output += ".";
-              console.log(this.output);
             }
             break;
           default:
@@ -237,7 +235,8 @@ import ToggleTheme from "./components/ToggleTheme.vue";
               }
               break;
           }
-          console.log(this.temp);
+          console.log("Result " + this.temp);
+          console.log("Result length " + this.temp.length);
         }
       }
     },
